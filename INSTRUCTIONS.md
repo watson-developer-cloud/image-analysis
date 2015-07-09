@@ -42,10 +42,10 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
   ![app-details](instructions/app-details.png)
   
-  3. From the list of Watson services, select the Machine Translation service and add it to your application. For the purposes of this lab, all of the default settings of the service will work, so when presented with the Machine Translation details page, select the green "Create" button to proceed.
+  3. From the list of Watson services, select the Language Translation service and add it to your application. For the purposes of this lab, all of the default settings of the service will work, so when presented with the Language Translation details page, select the green "Create" button to proceed.
 
   ![add-service](instructions/add-service.png)
-    **Note:** you may be prompted to restage your application at this point. This is required in order to rebuild the application with the new Machine Translation service that we have added. Select "Restage" to proceed.
+    **Note:** you may be prompted to restage your application at this point. This is required in order to rebuild the application with the new Language Translation service that we have added. Select "Restage" to proceed.
   
 ## Test out the application
 
@@ -61,7 +61,7 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
   3. When the image has been recognized, click on the Speaker icon to hear the description of the image spoken to you.
   
-We are going to demonstrate how easy it is to use the Watson services on Bluemix to add functionality to existing applications. Our current application can identify images and read out that identification using audio. However let’s say that we wanted to be able to identify these images for a wider user base, which requires translation into other languages.Luckily, we’ve already started the process to do this. To fully implement the ability to translate these descriptions in our application, we are going to edit our application code to add the Machine Translation service that we added earlier.
+We are going to demonstrate how easy it is to use the Watson services on Bluemix to add functionality to existing applications. Our current application can identify images and read out that identification using audio. However let’s say that we wanted to be able to identify these images for a wider user base, which requires translation into other languages.Luckily, we’ve already started the process to do this. To fully implement the ability to translate these descriptions in our application, we are going to edit our application code to add the Language Translation service that we added earlier.
   
 ## Modify the existing application
 
@@ -69,34 +69,35 @@ We are going to demonstrate how easy it is to use the Watson services on Bluemix
   Click on **Edit Code.**
 
   2. Clicking on Edit Code will take you to the Jazz Hub repository, which will allow us to edit and push new versions of our code to the application.
-    Within the Github repository, navigate to routes folder and select **File -> New -> File** and name the new file `mt.js`
+    Within the Github repository, navigate to routes folder and select **File -> New -> File** and name the new file `lt.js`
 
-  3. Open up `mt.js` and copy the code below:  
+  3. Open up `lt.js` and copy the code below:  
 
   ```js
   "use strict";	
   var fs = require("fs"),      extend = require("util")._extend,      watson = require("watson-developer-cloud"),      bluemix = require("../config/bluemix");  module.exports = function() {
-         var machineTranslation = watson.machine_translation(extend({          version: "v1",          username: "<<service_username>>",          password: "<<service_password>>",       }, bluemix.getServiceCreds("machine_translation")));     
-       return {          translate: function(req, res) {               var params = {                    text: req.body.text,                    to: req.body.to || "eses",                    from: "enus"
-               };               machineTranslation.translate(params, function(error, result) {                   if (error) {                       return res.status(error.error ? error.error.code || 500 : 500).json({ error: error });                   } else {                       return res.json(result);                   }
+         var languageTranslation = watson.language_translation(extend({          version: "v2",          username: "<<service_username>>",          password: "<<service_password>>",       }, bluemix.getServiceCreds("language_translation")));     
+       return {          translate: function(req, res) {               var params = {                    text: req.body.text,
+                    source: "en",                    target: "es"
+               };               languageTranslation.translate(params, function(error, result) {                   if (error) {                       return res.status(error.error ? error.error.code || 500 : 500).json({ error: error });                   } else {                       return res.json(result);                   }
                });           } 
-       }  }();
+       };  }();
   ```
 
-  The code above will connect the app to the [Machine Translation][mt_service] service.
+  The code above will connect the app to the [Language Translation][lt_service] service.
   
   4. Click on File -> Save or press Crt+S.
   
-  5. Open up your `app.js` and import the newly created `routes/mt.js`. This can be done by adding the following to line 22: 
+  5. Open up your `app.js` and import the newly created `routes/lt.js`. This can be done by adding the following to line 22: 
     
   ```js
-  var mt = require("./routes/mt");
+  var lt = require("./routes/lt");
   ```
 
   6. Finally, configure the route in your `app.js` by adding the following to line 31:
 
   ```js
-  app.post("/translate", mt.translate);
+  app.post("/translate", lt.translate);
   ```
   
   7. Click on File -> Save or press Crt+S.
@@ -130,4 +131,4 @@ You have completed the Image Analysis Lab! :bowtie:
 
 [bluemix]: https://console.ng.bluemix.net/
 [wdc_services]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html
-[mt_service]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/machine-translation.html
+[lt_service]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/language-translation.html

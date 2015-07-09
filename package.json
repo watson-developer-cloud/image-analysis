@@ -1,36 +1,36 @@
 {
-	"name": "watson-recognizer",
-	"version": "0.0.1",
-	"author": "Al DeLucca",
- 	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"body-parser": "~1.12.0",
-		"errorhandler": "~1.3.2",
-		"cookie-parser": "~1.3.4",
-		"debug": "~2.1.1",
-		"express": "~4.12.2",
-		"jade": "~1.9.2",
-		"morgan": "~1.5.1",
-		"serve-favicon": "~2.2.0",
-		"multer": "^0.1.7",
-		"request": "~2.51.0",
-		"validator": "^3.28.0",
-		"watson-developer-cloud": "~0.9.6",
-		"sox": "^0.1.0",
-		"node-uuid": "*",
-		"mkdirp": "*"
-	},
-	"engines": {
-		"node": ">=0.10"
-	},
-	"repository": {
-    	"type": "git",
-    	"url": "https://github.com/aldelucca1/watson-recognizer.git"
-  	},
-  	"license": "Apache-2.0",
- 	"bugs": {
-    	"url": "https://github.com/aldelucca1/watson-recognizer/issues"
-  	}
+  "name": "watson-recognizer",
+  "version": "0.0.1",
+  "author": "Al DeLucca",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.12.0",
+    "cookie-parser": "~1.3.4",
+    "debug": "~2.1.1",
+    "errorhandler": "~1.3.2",
+    "express": "~4.12.2",
+    "jade": "~1.9.2",
+    "mkdirp": "*",
+    "morgan": "~1.5.1",
+    "multer": "^0.1.7",
+    "node-uuid": "*",
+    "request": "~2.51.0",
+    "serve-favicon": "~2.2.0",
+    "sox": "*",
+    "validator": "^3.28.0",
+    "watson-developer-cloud": "^0.9.22"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aldelucca1/watson-recognizer.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/aldelucca1/watson-recognizer/issues"
+  }
 }

@@ -64,7 +64,7 @@
 			request.responseType = "arraybuffer";
 			request.onload = function() {
 				def.resolve(request.response);
-			}
+			};
 			request.send("text=" + text + "&voice=" + voice);
 			return def;
 		},
@@ -78,7 +78,7 @@
 			return $.ajax({
 				url: baseURI + "translate",
 				type: "POST",
-				data: "text=" + text,
+				data: "text=" + text.toLowerCase(),
 				contentType: "application/x-www-form-urlencoded",
 				dataType: "json"
 			});

@@ -118,8 +118,8 @@
 		var image = textObj.images ? textObj.images[0] : {},
 			labels = image.labels || [],
 			label = labels[0],
-			text = label ? label.label_name : "";//,
-			translation = translationObj && translationObj.translation ? translationObj.translation : "";
+			text = label ? label.label_name : "",
+			translation = (translationObj && translationObj.translations && translationObj.translations.length > 0) ? translationObj.translations[0].translation : "";
 
 		var result = $("#image-result");
 		result.data("text", text);
