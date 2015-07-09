@@ -46,7 +46,7 @@ module.exports = function() {
 
 			var params = {
 				text: req.body.text,
-				voice: req.body.voice || "VoiceEsEsEnrique",
+				voice: req.body.voice || "en-US_MichaelVoice",
 				accept: "audio/wav"
 			};
 
