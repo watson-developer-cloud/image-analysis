@@ -17,20 +17,20 @@
 		"multer": "^0.1.7",
 		"request": "~2.51.0",
 		"validator": "^3.28.0",
-		"watson-developer-cloud": "~0.9.6",
+		"watson-developer-cloud": "~0.9.22",
 		"sox": "^0.1.0",
 		"node-uuid": "*",
 		"mkdirp": "*"
 	},
 	"engines": {
-		"node": ">=0.10"
+		"node": ">=0.10.38"
 	},
 	"repository": {
     	"type": "git",
-    	"url": "https://github.com/aldelucca1/watson-recognizer.git"
+    	"url": "https://github.com/watson-developer-cloud/image-analysis.git"
   	},
   	"license": "Apache-2.0",
  	"bugs": {
-    	"url": "https://github.com/aldelucca1/watson-recognizer/issues"
+    	"url": "https://github.com/watson-developer-cloud/image-analysis/issues"
   	}
 }
