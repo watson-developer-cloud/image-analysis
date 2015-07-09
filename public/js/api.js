@@ -53,7 +53,7 @@
 				return false;
 			}
 			if (!voice || voice.length === 0) {
-				voice = "VoiceEnUsMichael";
+				voice = "en-US_MichaelVoice";
 			}
 			
 			var def = $.Deferred();
