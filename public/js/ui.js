@@ -79,10 +79,10 @@
 			var translation = result.data("translation");
 			if (translation && (translation.length > 0)) {
 				text = result.data("translation");
-				voice = "VoiceEsEsEnrique";
+				voice = "es-ES_EnriqueVoice";
 			} else {
 				text = result.data("text");
-				voice = "VoiceEnUsMichael";
+				voice = "en-US_MichaelVoice";
 			}
 			if (text && text.length > 0) {
 				var request = $.api.speak(text, voice);
