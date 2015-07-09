@@ -1,14 +1,14 @@
 ---
 declared-services:
-  text-to-speech-service:
+  text-to-speech-service-standard:
     label: text_to_speech
-    plan: free
+    plan: standard
   visual-recognition-service:
     label: visual_recognition
     plan: free
 applications:
 - services:
-  - text-to-speech-service
+  - text-to-speech-service-standard
   - visual-recognition-service
   name: image-analysis
   command: node app.js
