@@ -1,6 +1,8 @@
-# World of Watson Labs - Image Analysis
+# Watson Hands On Labs - Image Analysis
  
-This lab is part of a Drop In Lab during World of Watson 2015 at NYC. The labs cover several [Watson Services][wdc_services] that are available on [IBM Bluemix][bluemix] to build a simple travel advisor application. Throughout the workshop, we will navigate through Bluemix, Github, and the source code of our application in order to demonstrate how apps can be created quickly and easily using the [IBM Bluemix][bluemix] platform and the value of [Watson Services][wdc_services] and Cognitive capabilities through APIs.
+This lab was originally created as a part of the World of Watson event in May 2015.
+
+The labs cover several [Watson Services][wdc_services] that are available on [IBM Bluemix][bluemix] to build a simple travel advisor application. Throughout the workshop, we will navigate through Bluemix, Github, and the source code of our application in order to demonstrate how apps can be created quickly and easily using the [IBM Bluemix][bluemix] platform and the value of [Watson Services][wdc_services] and Cognitive capabilities through APIs.
 
 So let’s get started. The first thing to do is to build out the shell of our application in Bluemix.
 
@@ -126,7 +128,7 @@ Luckily, we’ve already started the process to do this. To fully implement the 
   var lt = require("./routes/lt");
   ```
 
-  6. Finally, configure the route in your `app.js` by adding the following to line 31:
+  6. Finally, configure the route in your `app.js` by adding the following to line 30:
 
   ```js
   app.post("/translate", lt.translate);
