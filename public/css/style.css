@@ -43,7 +43,7 @@
 .image-result h3 {
 	margin: 0px;
 	color: #FFF;
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .image-result h2 {
@@ -61,4 +61,17 @@
 
 .image-result .play a {
 	color: #FFF;
+}
+.capture-button {
+	cursor: pointer;
+}
+
+.capture-button:hover {
+	cursor: pointer;
+	text-decoration: none;
+	color: blue;
+}
+
+#play-sound {
+	cursor: pointer;
 }

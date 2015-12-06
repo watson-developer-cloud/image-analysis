@@ -16,24 +16,25 @@
 
 'use strict';
 
-var express = require('express'),
-  app = express(),
-  vr = require('./routes/vr'),
-  tts = require('./routes/tts');
+module.exports = function (app) {
 
-// Bootstrap application settings
-require('./config/express')(app);
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.code = 404;
+    err.message = 'Not Found';
+    next(err);
+  });
 
-app.post('/recognize',app.upload.single('images_file'), vr.recognize);
-app.get('/voices', tts.voices);
-app.post('/speak', tts.speak);
+  // error handler
+  app.use(function(err, req, res, next) {
+    var error = {
+      code: err.code || 500,
+      error: err.error || err.message
+    };
 
-//app.post('/translate', require('./routes/lt').translate);
+    console.log('error:', error, 'url:', req.url);
+    res.status(error.code).json(error);
+  });
 
-// error-handler settings
-require('./config/error-handler')(app);
-
-var port = process.env.VCAP_APP_PORT || 3000;
-app.listen(port, function() {
-  console.log('listening at:', port);
-});
+};
