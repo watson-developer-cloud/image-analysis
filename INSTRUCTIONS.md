@@ -14,7 +14,7 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
 **Note:** The confirmation email from Bluemix mail take up to 1 hour.
 
-## Deploy this sample application in Bluemix
+## Deploy this sample application in Bluemix and Test it
 
   1. Click the button below to fork the project into IBM DevOps Services and deploy your own instance of this application on [IBM Bluemix][bluemix].
 
@@ -32,9 +32,21 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
   ![deploy-success](instructions/deploy-success.png)
 
-  5. Test Out the new app. Now that we have deployed our application to Bluemix, the next step is to test out the application in its current state. Afterwards we will build out more functionality into the application.
+  5. Test Out the new app. Now that we have deployed our application to Bluemix, the next step is to test the application in it's current state.
 
-## Add services to the application
+  6. Click on the application icon to go into the dashboard for our Image Analysis app. Under the title of the application, you will see a link like "Routes: \<your-app-name\>.mybluemix.net". Click on the URL listed to navigate to your application.
+  
+  ![app-route](instructions/app-route.png)
+
+  7. In the application, try selecting the upload button in the top right corner and uploading a picture. We have a provided a few pictures to test out the application in the repo at https://github.com/watson-developer-cloud/image-analysis/tree/master/public/images
+
+  Simply download one of the pictures in the folder and upload it into the application to have Watson analyze the image.
+
+  ![app-screenshot](instructions/app-screenshot.png)
+
+  8. When the image has been recognized, click on the Speaker icon to hear the ID of the image.
+
+## Add additional services to the application
 
   1. So far, we have deployed our pre built starter application to Bluemix. We are going to show how easy it is to add additional Watson services to our applications using Bluemix.
 
@@ -52,21 +64,6 @@ To do this, click the "Add a Service or API" button on the homepage
   ![add-service](instructions/add-service.png)
 
   **Note:** you may be prompted to restage your application at this point. This is required in order to rebuild the application with the new Language Translation service that we have added. Select "Restage" to proceed.
-
-## Test out the application
-
-  1. Once the services are loaded, you will be able to launch the existing pre-built application. To launch the application, click the link next to "Routes" which should follow the naming convention *\<your app name\>*.mybluemix.net
-
-  ![app-route](instructions/app-route.png)
-
-  When launched, you will be able to see the simple image recognition application, that allows a user to select a photo and identify the captured image. When clicking on the speaker button button in the bottom right hand corner you will hear the identified description.
-Let’s test the application out.
-
-  2. Select the icon in the top right hand corner to prompt for image upload. If you open a Finder window and select "All My Files", we have provided some sample images in order to test out the application.
-
-  ![app-screenshot](instructions/app-screenshot.png)
-
-  3. When the image has been recognized, click on the Speaker icon to hear the description of the image spoken to you.
 
 We are going to demonstrate how easy it is to use the Watson services on Bluemix to add functionality to existing applications. Our current application can identify images and read out that identification using audio. However let’s say that we wanted to be able to identify these images for a wider user base, which requires translation into other languages.
 
