@@ -1,8 +1,6 @@
 # Watson Hands On Labs - 📷 Image Analysis
 
-This lab was originally created as a part of the World of Watson event in May 2015.
-
-The labs cover several [Watson Services][wdc_services] that are available on [IBM Bluemix][bluemix] to build a simple travel advisor application. Throughout the workshop, we will navigate through Bluemix, Github, and the source code of our application in order to demonstrate how apps can be created quickly and easily using the [IBM Bluemix][bluemix] platform and the value of [Watson Services][wdc_services] and Cognitive capabilities through APIs.
+The labs cover several [Watson Services][wdc_services] that are available on [IBM Bluemix][bluemix] to build a simple image analysis application. Throughout the workshop, we will navigate through Bluemix, Bluemix Devops Services, Github, and the source code of our application in order to demonstrate how apps can be created quickly and easily using the [IBM Bluemix][bluemix] platform, and the value of [Watson Services][wdc_services] and Cognitive capabilities through APIs.
 
 So let’s get started. The first thing to do is to build out the shell of our application in Bluemix.
 
@@ -15,6 +13,8 @@ So let’s get started. The first thing to do is to build out the shell of our a
 **Note:** The confirmation email from Bluemix mail take up to 1 hour.
 
 ## Deploy this sample application in Bluemix and Test it
+
+Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the code from any public GitHub repository, create the dependent Watson service instances, and deploy our application code with the click of a button.  To get started:
 
   1. Click the button below to fork the project into IBM DevOps Services and deploy your own instance of this application on [IBM Bluemix][bluemix].
 
@@ -71,7 +71,7 @@ Luckily, we’ve already started the process to do this. To fully implement the 
 
 ## Modify the existing application
 
-  1. Let’s edit our source code. Back on the application home page in Bluemix, you will see a link to the Jazz Hub repository, and a button to **Edit Code**.
+  1. Let’s edit our source code. Back on the application home page in Bluemix, you will see a link to the IBM Bluemix Devops Jazz Hub repository, and a button to **Edit Code**.
   Click on **Edit Code.**
 
   2. Clicking on Edit Code will take you to the Jazz Hub repository, which will allow us to edit and push new versions of our code to the application.
