@@ -15,8 +15,6 @@ Demo: [http://image-analysis.mybluemix.net/](http://image-analysis.mybluemix.net
 ## Running locally
   The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
 
-Explain how to clone the git repo they get with the deploy to bluemix button.
-
 1. Copy the credentials from your `visual-recognition` and `text-to-speech` service in Bluemix to `vr.js` and `tts.js`, you can see the credentials by going to bluemix.net.
 
 2. Install [Node.js](http://nodejs.org/)
