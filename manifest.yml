@@ -14,4 +14,4 @@ applications:
   command: node app.js
   path: .
   memory: 512M
-  buildpack: https://github.com/jthomas/nodejs-buildpack.git
+  buildpack: https://github.com/purukn/nodejs-buildpack.git

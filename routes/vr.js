@@ -20,10 +20,9 @@ var fs = require('fs'),
 	watson = require('watson-developer-cloud');
 
 var visualRecognition = watson.visual_recognition({
-	version: 'v2-beta',
-	version_date: '2015-12-02',
-	username: '<<service_username>>',
-	password: '<<service_password>>'
+	version: 'v3',
+	version_date: '2016-05-19',
+	api_key: process.env.API_KEY || '<api-key>'
 });
 
 module.exports.recognize = function(req, res, next) {

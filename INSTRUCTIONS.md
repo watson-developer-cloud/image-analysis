@@ -18,7 +18,7 @@ Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the cod
 
   1. Click the button below to fork the project into IBM DevOps Services and deploy your own instance of this application on [IBM Bluemix][bluemix].
 
-  [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/image-analysis)
+  [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/purukn/image-analysis)
 
   2. From here you will be taken to a Bluemix page, where you will be prompted to name your app. A sample name is provided for you, but feel free to give your application any name you like (if the name is taken by another user you will be prompted to try another name).
 
@@ -35,7 +35,7 @@ Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the cod
   5. Test Out the new app. Now that we have deployed our application to Bluemix, the next step is to test the application in it's current state.
 
   6. Click on the application icon to go into the dashboard for our Image Analysis app. Under the title of the application, you will see a link like "Routes: \<your-app-name\>.mybluemix.net". Click on the URL listed to navigate to your application.
-  
+
   ![app-route](instructions/app-route.png)
 
   7. In the application, try selecting the upload button in the top right corner and uploading a picture. We have a provided a few pictures to test out the application in the repo at https://github.com/watson-developer-cloud/image-analysis/tree/master/public/images
