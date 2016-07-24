@@ -104,7 +104,7 @@ Luckily, we’ve already started the process to do this. To fully implement the 
     });
   };
   ```
-
+  Note: Make sure to replace <<service_username>> & <<service_password>> with the username & password of the Language Translation service created.
   The code above will connect the app to the [Language Translation][lt_service] service.
 
   4. Click on File -> Save or press Crt+S.
