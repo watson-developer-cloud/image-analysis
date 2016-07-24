@@ -22,7 +22,7 @@ var fs = require('fs'),
 var visualRecognition = watson.visual_recognition({
 	version: 'v3',
 	version_date: '2016-05-19',
-	api_key: process.env.API_KEY || '<api-key>'
+	api_key: process.env.API_KEY || '<api_key>'
 });
 
 module.exports.recognize = function(req, res, next) {
@@ -39,11 +39,13 @@ module.exports.recognize = function(req, res, next) {
     if (req.file)
       fs.unlink(req.file.path);
 
-		if (error)
+		if (error) {
 			console.log(error);
 			return next(error);
-		else
+		}
+		else {
 			console.log(JSON.stringify(result, null, 2));
 			return res.json(result);
+		}
 	});
 };

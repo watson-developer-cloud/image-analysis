@@ -11,6 +11,8 @@
     "find-remove": "^0.2.12",
     "multer": "^1.1.0",
     "sox": "^0.1.0",
+    "mkdirp": "^0.5.1",
+    "node-uuid": "^1.4.7",
     "watson-developer-cloud": "^1.12.4"
   },
   "engines": {

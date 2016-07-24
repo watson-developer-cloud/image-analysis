@@ -21,7 +21,7 @@ var watson = require('watson-developer-cloud'),
 
 var textToSpeech = watson.text_to_speech({
 	version: 'v1',
-	username: process.env.USERNAME || '<username>',
+	username: process.env.USERNAME || '<user-name>',
 	password: process.env.PASSWORD || '<password>'
 });
 
