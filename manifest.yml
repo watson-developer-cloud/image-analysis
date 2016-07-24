@@ -4,7 +4,7 @@ declared-services:
     label: text_to_speech
     plan: standard
   visual-recognition-service:
-    label: visual_recognition
+    label: watson_vision_combined
     plan: free
 applications:
 - services:
