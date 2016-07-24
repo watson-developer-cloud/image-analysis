@@ -40,8 +40,10 @@ module.exports.recognize = function(req, res, next) {
       fs.unlink(req.file.path);
 
 		if (error)
+			console.log(error);
 			return next(error);
 		else
+			console.log(JSON.stringify(result, null, 2));
 			return res.json(result);
 	});
 };
