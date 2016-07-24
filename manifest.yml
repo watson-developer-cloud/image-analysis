@@ -5,7 +5,7 @@ declared-services:
     plan: standard
   visual-recognition-service:
     label: visual_recognition
-    plan: standard
+    plan: free
 applications:
 - services:
   - text-to-speech-service
