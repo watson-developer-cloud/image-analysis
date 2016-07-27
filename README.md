@@ -9,7 +9,7 @@ Lab Instructions: [INSTRUCTIONS](INSTRUCTIONS.md)
 Demo: [http://image-analysis.mybluemix.net/](http://image-analysis.mybluemix.net/)
 
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/purukn/image-analysis)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/wwatson-developer-cloud/image-analysis)
 
 
 ## Running locally
