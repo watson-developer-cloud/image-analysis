@@ -101,9 +101,9 @@ $( document ).ready(function() {
 
   function translate(textObj) {
     var image = textObj.images ? textObj.images[0] : {},
-      scores = image.scores || [],
-      classifier = scores[0],
-      text = classifier ? classifier.name.replace(/_/gi,' ') : 'The image could not be recognize';
+      classifiers = image.classifiers || [],
+      classifier = classifiers[0],
+      text = classifier ? classifier.classes[0].class.replace(/_/gi,' ') : 'The image could not be recognize';
 
     var request = $.api.translate(text);
     $.when(request).then(function(translationObj) {
@@ -115,9 +115,9 @@ $( document ).ready(function() {
 
   function onSuccess(textObj, translationObj) {
     var image = textObj.images ? textObj.images[0] : {},
-      scores = image.scores || [],
-      classifier = scores[0],
-      text = classifier ? classifier.name.replace(/_/gi,' ') : 'The image could not be recognize',
+      classifiers = image.classifiers || [],
+      classifier = classifiers[0],
+      text = classifier ? classifier.classes[0].class.replace(/_/gi,' ') : 'The image could not be recognize',
       translation = (translationObj && translationObj.translations && translationObj.translations.length > 0) ? translationObj.translations[0].translation : '';
 
     var result = $('#image-result');
