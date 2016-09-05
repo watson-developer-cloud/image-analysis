@@ -21,7 +21,7 @@ var fs = require('fs'),
 var visualRecognition = watson.visual_recognition({
   version: 'v3',
   version_date: '2016-05-19',
-  api_key: process.env.API_KEY || '2d78974fde1d07464320a4684b966299e9d0e4db'
+  api_key: process.env.API_KEY || 'API_KEY'
 });
 
 module.exports.recognize = function(req, res, next) {

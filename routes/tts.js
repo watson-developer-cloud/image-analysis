@@ -20,8 +20,8 @@ var watson = require('watson-developer-cloud'),
 
 var textToSpeech = watson.text_to_speech({
   version: 'v1',
-  username: process.env.USERNAME || '77a312f2-341a-4c65-bb87-12353cc4ca56',
-  password: process.env.PASSWORD || 'TduoQUUsFbjy'
+  username: process.env.USERNAME || 'USERNAME',
+  password: process.env.PASSWORD || 'PASSWORD'
 });
 
 module.exports.voices = function(req, res, next) {

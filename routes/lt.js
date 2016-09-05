@@ -4,8 +4,8 @@ var watson = require('watson-developer-cloud');
 
 var languageTranslation = watson.language_translation({
   version: 'v2',
-  username: '7197692f-0d88-471f-a28d-1801215d84d6',
-  password: 'Z7xMjGjVynZK'
+  username: 'USERNAME',
+  password: 'PASSWORD'
 });
 
 module.exports.translate = function(req, res, next) {
