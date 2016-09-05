@@ -3,13 +3,13 @@ declared-services:
   text-to-speech-service:
     label: text_to_speech
     plan: standard
-  visual-recognition-service:
+  language-translation-service:
     label: watson_vision_combined
-    plan: free
+    plan: standard
 applications:
 - services:
   - text-to-speech-service
-  - visual-recognition-service
+  - language-translation-service
   name: image-analysis
   command: node app.js
   path: .
