@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 'use strict';
 
 var watson = require('watson-developer-cloud'),
   util = require('../util');
 
 var textToSpeech = watson.text_to_speech({
-	version: 'v1',
-	username: process.env.USERNAME || '<user-name>',
-	password: process.env.PASSWORD || '<password>'
+  version: 'v1',
+  username: process.env.USERNAME || '77a312f2-341a-4c65-bb87-12353cc4ca56',
+  password: process.env.PASSWORD || 'TduoQUUsFbjy'
 });
 
 module.exports.voices = function(req, res, next) {
@@ -42,12 +41,7 @@ module.exports.speak = function(req, res, next) {
   };
   var stream = textToSpeech.synthesize(params);
 
-	stream.on('error',next);
+  stream.on('error', next);
 
-  var userAgent = req.headers['user-agent'];
-  if (!/iPhone|iPad|iPod|Safari/i.test(userAgent)) {
-    return stream.pipe(res);
-  } else {
-    return util.fixEncoding(stream, res);
-  }
+  return stream.pipe(res);
 };

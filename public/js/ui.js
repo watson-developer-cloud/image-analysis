@@ -16,7 +16,7 @@
 /* global $, Spinner*/
 'use strict';
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
   var opts = {
     lines: 13, // The number of lines to draw
@@ -39,6 +39,7 @@ $( document ).ready(function() {
 
   var spinner = new Spinner(opts);
   var player = $.AudioPlayer();
+  var type = 0; // 0: classify, 1: recognizetext
 
   function toTitleCase(val) {
     if (val.length > 1) {
@@ -95,30 +96,44 @@ $( document ).ready(function() {
   }
 
   function recognize(file) {
-    var request = $.api.recognize(file);
-    $.when(request).then(translate, onError);
+    if (type === 0) {
+      var request = $.api.recognize(file);
+      $.when(request).then(translate, onError);
+    } else {
+      var request = $.api.recognizeText(file);
+      $.when(request).then(translateSign, onError);
+    }
+
   }
 
   function translate(textObj) {
+    console.log('textObj', textObj);
     var image = textObj.images ? textObj.images[0] : {},
       classifiers = image.classifiers || [],
       classifier = classifiers[0],
-      text = classifier ? classifier.classes[0].class.replace(/_/gi,' ') : 'The image could not be recognize';
+      text = classifier ? classifier.classes[0].class.replace(/_/gi, ' ') : 'The image could not be recognize';
 
     var request = $.api.translate(text);
     $.when(request).then(function(translationObj) {
-      onSuccess(textObj, translationObj);
+      onSuccess(text, translationObj);
     }, function() {
-      onSuccess(textObj);
+      onSuccess(text);
     });
   }
 
-  function onSuccess(textObj, translationObj) {
-    var image = textObj.images ? textObj.images[0] : {},
-      classifiers = image.classifiers || [],
-      classifier = classifiers[0],
-      text = classifier ? classifier.classes[0].class.replace(/_/gi,' ') : 'The image could not be recognize',
-      translation = (translationObj && translationObj.translations && translationObj.translations.length > 0) ? translationObj.translations[0].translation : '';
+  function translateSign(textObj) {
+    var text = textObj.images[0].text.replace(/_/gi, ' ') //: 'The image could not be recognize';
+    var request = $.api.translate(text);
+    $.when(request).then(function(translationObj) {
+      onSuccess(text, translationObj);
+    }, function() {
+      onSuccess(text);
+    });
+  }
+
+  function onSuccess(text, translationObj) {
+    console.log('translationObj', translationObj)
+    var translation = (translationObj && translationObj.translations && translationObj.translations.length > 0) ? translationObj.translations[0].translation : '';
 
     var result = $('#image-result');
     result.data('text', text);
@@ -126,7 +141,9 @@ $( document ).ready(function() {
 
     $('h2', result).html(toTitleCase(text));
     $('h3', result).html(translation);
-    result.animate({ 'bottom': '+=85px' }, 'slow');
+    result.animate({
+      'bottom': '+=85px'
+    }, 'slow');
     spinner.stop();
   }
 
@@ -152,7 +169,14 @@ $( document ).ready(function() {
     }
   }
 
-  $('#capture-button').on('click', selectImage);
+  $('#capture-button-recognize').on('click', function() {
+    type = 0;
+    selectImage();
+  })
+  $('#capture-button-recognizetext').on('click', function() {
+    type = 1;
+    selectImage();
+  })
   $('#picture-field').on('change', imageSelected);
   $('#play-sound').on('click', speak);
 

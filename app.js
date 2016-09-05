@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 'use strict';
 
 var express = require('express'),
@@ -24,11 +23,12 @@ var express = require('express'),
 // Bootstrap application settings
 require('./config/express')(app);
 
-app.post('/recognize',app.upload.single('images_file'), vr.recognize);
+app.post('/recognize', app.upload.single('images_file'), vr.recognize);
+app.post('/recognizetext', app.upload.single('images_file'), vr.recognizeText);
 app.get('/voices', tts.voices);
 app.post('/speak', tts.speak);
 
-//app.post('/translate', require('./routes/lt').translate);
+app.post('/translate', require('./routes/lt').translate);
 
 // error-handler settings
 require('./config/error-handler')(app);

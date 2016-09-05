@@ -13,37 +13,59 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 'use strict';
 
 var fs = require('fs'),
-	watson = require('watson-developer-cloud');
+  watson = require('watson-developer-cloud');
 
 var visualRecognition = watson.visual_recognition({
-	version: 'v3',
-	version_date: '2016-05-19',
-	api_key: process.env.API_KEY || '<api_key>'
+  version: 'v3',
+  version_date: '2016-05-19',
+  api_key: process.env.API_KEY || '2d78974fde1d07464320a4684b966299e9d0e4db'
 });
 
 module.exports.recognize = function(req, res, next) {
-	if (!req.file  && !req.file.path) {
-    return next({ error: 'Missing required parameter: file', code: 400 });
+  if (!req.file && !req.file.path) {
+    return next({
+      error: 'Missing required parameter: file',
+      code: 400
+    });
   }
 
-	var params = {
-		images_file: fs.createReadStream(req.file.path)
-	};
+  var params = {
+    images_file: fs.createReadStream(req.file.path)
+  };
 
-	visualRecognition.classify(params, function(error, result) {
-		// delete the recognized file
+  visualRecognition.classify(params, function(error, result) {
+    // delete the recognized file
     if (req.file)
       fs.unlink(req.file.path);
 
-		if (error) {
-			return next(error);
-		}
-		else {
-			return res.json(result);
-		}
-	});
+    if (error) {
+      return next(error);
+    } else {
+      return res.json(result);
+    }
+  });
+};
+
+module.exports.recognizeText = function(req, res, next) {
+  if (!req.file && !req.file.path) {
+    return next({
+      error: 'Missing required parameter: file',
+      code: 400
+    });
+  }
+
+  var params = {
+    images_file: fs.createReadStream(req.file.path)
+  };
+
+  visualRecognition.recognizeText(params,
+    function(err, response) {
+      if (err)
+        return next(err);
+      else
+        return res.json(response);
+    });
 };

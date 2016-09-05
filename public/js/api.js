@@ -16,7 +16,7 @@
 /* global $*/
 'use strict';
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
   // Determine the base URI
   var baseURI = location.href;
@@ -41,6 +41,25 @@ $( document ).ready(function() {
 
       return $.ajax({
         url: baseURI + 'recognize',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: 'json'
+      });
+    },
+
+    recognizeText: function(file) {
+
+      if (!file) {
+        return false;
+      }
+
+      var formData = new FormData();
+      formData.append('images_file', file);
+
+      return $.ajax({
+        url: baseURI + 'recognizetext',
         type: 'POST',
         data: formData,
         processData: false,
