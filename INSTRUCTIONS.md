@@ -6,11 +6,25 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
 ## Creating a [IBM Bluemix][bluemix] Account
 
-  1. Go to [https://ace.ng.bluemix.net/](https://ace.ng.bluemix.net/)
+  1. Go to [https://bluemix.net/](https://bluemix.net/)
   2. Create a Bluemix account if required.
   3. Log in with your IBM ID (the ID used to create your Bluemix account)
 
-**Note:** The confirmation email from Bluemix mail take up to 1 hour.
+**Note:** The confirmation email from Bluemix mail may take up to 1 hour.
+
+## Running  the application locally
+  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
+
+1. !!! Add 
+- steps to create the service from the CF commande line and retrieve the credentials
+- edit config.js to add the credentials
+
+2. Install [Node.js](http://nodejs.org/)
+3. Go to the project folder in a terminal and run:
+    `npm install`
+4. Start the application
+5.  `node app.js`
+6. Go to `http://localhost:3000`
 
 ## Add additional services to the application
 
