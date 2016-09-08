@@ -19,7 +19,7 @@ var express = require('express'),
   app = express(),
   vr = require('./routes/vr'),
   tts = require('./routes/tts');
-var lt = require('./routes/lt');
+// var lt = require('./routes/lt');
 
 // Bootstrap application settings
 require('./config/express')(app);
@@ -29,7 +29,7 @@ app.post('/recognizetext', app.upload.single('images_file'), vr.recognizeText);
 app.get('/voices', tts.voices);
 app.post('/speak', tts.speak);
 
-app.post('/translate', lt.translate);
+// app.post('/translate', lt.translate);
 
 // error-handler settings
 require('./config/error-handler')(app);

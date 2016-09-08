@@ -90,7 +90,7 @@ $(document).ready(function() {
       return def;
     },
 
-    translate: function(text) {
+    translate: function(text, model) {
 
       if (!text || text.length === 0) {
         return false;
@@ -99,7 +99,7 @@ $(document).ready(function() {
       return $.ajax({
         url: baseURI + 'translate',
         type: 'POST',
-        data: 'text=' + text.toLowerCase(),
+        data: 'text=' + text.toLowerCase() + '&model=' + model,
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json'
       });

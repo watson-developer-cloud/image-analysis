@@ -40,6 +40,25 @@ $(document).ready(function() {
   var spinner = new Spinner(opts);
   var player = $.AudioPlayer();
   var type = 0; // 0: classify, 1: recognizetext
+  var model_LT, model_STT = '';
+
+  function switchLang() {
+    var lang_selected = $('#lang').val()
+    switch(lang_selected) {
+        case 'pt':
+            model_STT = 'pt-BR_IsabelaVoice'
+            model_LT = 'en-pt'
+            break;
+        case 'fr':
+            model_STT = 'fr-FR_ReneeVoice'
+            model_LT = 'en-fr'
+            break;
+        case 'es':
+            model_STT = 'es-ES_EnriqueVoice'
+            model_LT = 'en-es'
+            break;
+    }
+  }
 
   function toTitleCase(val) {
     if (val.length > 1) {
@@ -49,6 +68,7 @@ $(document).ready(function() {
   }
 
   function selectImage() {
+    switchLang()
     $('#picture-field').click();
   }
 
@@ -81,7 +101,7 @@ $(document).ready(function() {
       var translation = result.data('translation');
       if (translation && (translation.length > 0)) {
         text = result.data('translation');
-        voice = 'es-ES_EnriqueVoice';
+        voice = model_STT;
       } else {
         text = result.data('text');
         voice = 'en-US_MichaelVoice';
@@ -112,7 +132,7 @@ $(document).ready(function() {
       classifier = classifiers[0],
       text = classifier ? classifier.classes[0].class.replace(/_/gi, ' ') : 'The image could not be recognize';
 
-    var request = $.api.translate(text);
+    var request = $.api.translate(text, model_LT);
     $.when(request).then(function(translationObj) {
       onSuccess(text, translationObj);
     }, function() {
@@ -122,7 +142,7 @@ $(document).ready(function() {
 
   function translateSign(textObj) {
     var text = textObj.images[0].text.replace(/_/gi, ' ') //: 'The image could not be recognize';
-    var request = $.api.translate(text);
+    var request = $.api.translate(text, model_LT);
     $.when(request).then(function(translationObj) {
       onSuccess(text, translationObj);
     }, function() {
