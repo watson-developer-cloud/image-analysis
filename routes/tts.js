@@ -17,11 +17,12 @@
 
 var watson = require('watson-developer-cloud'),
   util = require('../util');
+var config = require('../config');
 
 var textToSpeech = watson.text_to_speech({
-  version: 'v1',
-  username: process.env.USERNAME || 'USERNAME',
-  password: process.env.PASSWORD || 'PASSWORD'
+  version: config.watson.text_to_speech.version,
+  username: process.env.USERNAME || config.watson.text_to_speech.username,
+  password: process.env.PASSWORD || config.watson.text_to_speech.password
 });
 
 module.exports.voices = function(req, res, next) {

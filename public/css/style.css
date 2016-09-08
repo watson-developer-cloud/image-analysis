@@ -1,6 +1,10 @@
+#div-header {
+	padding: 20px;
+	background-color: #f2fafc;
+}
+
 .landing {
 	height: 100%;
-	margin-top: 44px;
 }
 
 .landing .col-lg-12 {

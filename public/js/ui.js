@@ -107,7 +107,6 @@ $(document).ready(function() {
   }
 
   function translate(textObj) {
-    console.log('textObj', textObj);
     var image = textObj.images ? textObj.images[0] : {},
       classifiers = image.classifiers || [],
       classifier = classifiers[0],
@@ -132,7 +131,6 @@ $(document).ready(function() {
   }
 
   function onSuccess(text, translationObj) {
-    console.log('translationObj', translationObj)
     var translation = (translationObj && translationObj.translations && translationObj.translations.length > 0) ? translationObj.translations[0].translation : '';
 
     var result = $('#image-result');

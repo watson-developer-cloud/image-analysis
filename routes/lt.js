@@ -1,11 +1,12 @@
 'use strict';
 
 var watson = require('watson-developer-cloud');
+var config = require('../config');
 
-var languageTranslation = watson.language_translation({
-  version: 'v2',
-  username: 'USERNAME',
-  password: 'PASSWORD'
+var languageTranslation = watson.language_translator({
+  version: config.watson.language_translation.version,
+  username: process.env.USERNAME || config.watson.language_translation.username,
+  password: process.env.PASSWORD || config.watson.language_translation.password
 });
 
 module.exports.translate = function(req, res, next) {
@@ -14,7 +15,6 @@ module.exports.translate = function(req, res, next) {
     model_id: 'en-es',
   };
   languageTranslation.translate(params, function(error, result) {
-    console.log('restult', result)
     if (error)
       return next(error);
     else
