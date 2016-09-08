@@ -15,16 +15,15 @@ So let’s get started. The first thing to do is to build out the shell of our a
 ## Running  the application locally
   The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
 
-1. !!! Add 
-- steps to create the service from the CF commande line and retrieve the credentials
-- edit config.js to add the credentials
+1. steps to create the service from the CF commande line and retrieve the credentials
+2. edit config.js to add the credentials
 
-2. Install [Node.js](http://nodejs.org/)
-3. Go to the project folder in a terminal and run:
+3. Install [Node.js](http://nodejs.org/)
+4. Go to the project folder in a terminal and run:
     `npm install`
-4. Start the application
-5.  `node app.js`
-6. Go to `http://localhost:3000`
+5. Start the application
+6.  `node app.js`
+7. Go to `http://localhost:3000`
 
 ## Add additional services to the application
 
