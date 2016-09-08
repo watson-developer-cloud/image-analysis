@@ -12,40 +12,6 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
 **Note:** The confirmation email from Bluemix mail take up to 1 hour.
 
-## Deploy this sample application in Bluemix and Test it
-
-Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the code from any public GitHub repository, create the dependent Watson service instances, and deploy our application code with the click of a button.  To get started:
-
-  1. Click the button below to fork the project into IBM DevOps Services and deploy your own instance of this application on [IBM Bluemix][bluemix].
-
-  [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/image-analysis)
-
-  2. From here you will be taken to a Bluemix page, where you will be prompted to name your app. A sample name is provided for you, but feel free to give your application any name you like (if the name is taken by another user you will be prompted to try another name).
-
-  ![deploy](instructions/deploy.png)
-
-  **Note:** Use the default settings for Region / Organization / Space on the Bluemix landing page.
-
-  3. Once you have named your application, click the deploy button to begin the deploy process to Bluemix. During this process, Bluemix will automatically build and deploy our starter application based on the Github repository that we accessed at the start of the lab.
-
-  4. Once the application has finished deploying, you will see a "Success!" message. At this point, scroll to the top of the page and select "Dashboard" from the header bar.
-
-  ![deploy-success](instructions/deploy-success.png)
-
-  5. Test Out the new app. Now that we have deployed our application to Bluemix, the next step is to test the application in it's current state.
-
-  6. Click on the application icon to go into the dashboard for our Image Analysis app. Under the title of the application, you will see a link like "Routes: \<your-app-name\>.mybluemix.net". Click on the URL listed to navigate to your application.
-
-  ![app-route](instructions/app-route.png)
-
-  7. In the application, try selecting the upload button in the top right corner and uploading a picture. We have a provided a few pictures to test out the application in the repo at https://github.com/watson-developer-cloud/image-analysis/tree/master/public/images
-
-  Simply download one of the pictures in the folder and upload it into the application to have Watson analyze the image.
-
-  ![app-screenshot](instructions/app-screenshot.png)
-
-  8. When the image has been recognized, click on the Speaker icon to hear the ID of the image.
-
 ## Add additional services to the application
 
   1. So far, we have deployed our pre built starter application to Bluemix. We are going to show how easy it is to add additional Watson services to our applications using Bluemix.
