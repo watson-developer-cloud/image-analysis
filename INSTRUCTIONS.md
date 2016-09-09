@@ -25,8 +25,11 @@ So let’s get started. The first thing to do is to build out the shell of our a
 5. From that list, create a Visual Recognition and a Text-to-Speech service:
     `cf cs watson_vision_combined free visual_recognition_name`
     `cf cs text_to_speech standard text_to_speech_name`
-6. Go to your Bluemix Dashboard, click on the two services and write down the credentials (available on the left-hand side: Service Credentials)
-7. edit config.js to add the credentials previously retrieved
+6. Create new credentials for each of those services, to do so:
+    `cf create-service-key SERVICE_NAME KEY_NAME`
+7. Retrieve those new credentials using the following command:
+    `cf service-key SERVICE_NAME KEY_NAME`
+7. Edit config.js to add the credentials previously retrieved
 8. Go to the project folder in a terminal and run:
     `npm install`
 5. Start the application
@@ -35,95 +38,57 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
 ## Add additional functionality to the application: Ability to read signs
 
-TODO 
+1. In app.js, uncomment line 28
+`app.post('/recognizetext', app.upload.single('images_file'), vr.recognizeText);`
+2. In routes/vr.js, uncomment from line 53 to the end
+3. In public/js/ui.js, uncomment from line 143 to line 151
+4. In public/index.html, uncomment the second part of the line 47
+`OR <a id="capture-button-recognizetext">Recognize Text on an Image</a>`
+5. In public/js/ui.js, uncomment from line 194 to line 197
+6. Save the different files
+7. Quit the process in the terminal (CTRL + C)
+8. Restart the application
+    `node app.js`
 
 ## Add additional services to the application
 
-  1. So far, we have deployed our pre built starter application to Bluemix. We are going to show how easy it is to add additional Watson services to our applications using Bluemix.
+In this section we'll see how to add the possibility of translating the text recognized to an other language before it's spoken by the Text-to-Speech service
 
-  On the Bluemix Dashboard, scroll down to find your Image Analysis application within the "Applications" section. From here, click on the application to open the application homepage.
+1. Create a language translation service
+    `cf cs language_translation standard language_translation_name`
+2. Create new credentials and retrieve them as seen in the first section
+3. Edit the config.js file to add them, save the file
+4. In app.js, uncomment lines 22 and 32
+5. In public/index.html, uncomment from line 40 to 45
+6. Create a new file `lt.js` in the `routes` folder and paste in the following:
+```js
+'use strict';
 
-  ![dashboard-app](instructions/dashboard-app.png)
+var watson = require('watson-developer-cloud');
+var config = require('../config');
 
-  2. Within the application homepage, we are able to see what services we have already included. You will notice that we already have Text to Speech and Visual Recognition built into the application. We are now going to add a third service into the application.
-To do this, click the "Add a Service or API" button on the homepage
+var languageTranslation = watson.language_translator({
+  version: config.watson.language_translation.version,
+  username: process.env.USERNAME || config.watson.language_translation.username,
+  password: process.env.PASSWORD || config.watson.language_translation.password
+});
 
-  ![app-details](instructions/app-details.png)
-
-  3. From the list of Watson services, select the Language Translation service and add it to your application. For the purposes of this lab, all of the default settings of the service will work, so when presented with the Language Translation details page, select the green "Create" button to proceed.
-
-  ![add-service](instructions/add-service.png)
-
-  **Note:** you may be prompted to restage your application at this point. This is required in order to rebuild the application with the new Language Translation service that we have added. Select "Restage" to proceed.
-
-We are going to demonstrate how easy it is to use the Watson services on Bluemix to add functionality to existing applications. Our current application can identify images and read out that identification using audio. However let’s say that we wanted to be able to identify these images for a wider user base, which requires translation into other languages.
-
-Luckily, we’ve already started the process to do this. To fully implement the ability to translate these descriptions in our application, we are going to edit our application code to add the Language Translation service that we added earlier.
-
-## Modify the existing application
-
-  1. Let’s edit our source code. Back on the application home page in Bluemix, you will see a link to the IBM Bluemix Devops Jazz Hub repository, and a button to **Edit Code**.
-  Click on **Edit Code.**
-
-  2. Clicking on Edit Code will take you to the Jazz Hub repository, which will allow us to edit and push new versions of our code to the application.
-
-  Within the Github repository, navigate to routes folder and select **File -> New -> File** and name the new file `lt.js`
-
-  3. Open up `lt.js` and copy the code below:  
-
-  ```js
-  'use strict';
-
-  var watson = require('watson-developer-cloud');
-
-  var languageTranslation = watson.language_translation({
-    version: 'v2',
-    username: '<<service_username>>',
-    password: '<<service_password>>'
-  });
-
-  module.exports.translate = function(req, res, next) {
-    var params = {
-      text: req.body.text,
-      model_id: 'en-es',
-    };
-    languageTranslation.translate(params, function(error, result) {
-      if (error)
-        return next(error);
-      else
-        return res.json(result);
-    });
+module.exports.translate = function(req, res, next) {
+  var params = {
+    text: req.body.text,
+    model_id: req.body.model,
   };
-  ```
-  Note: Make sure to replace service_username & service_password with the username & password of the Language Translation service added.
-  The code above will connect the app to the [Language Translation][lt_service] service.
+  languageTranslation.translate(params, function(error, result) {
+    if (error)
+      return next(error);
+    else
+      return res.json(result);
+  });
+};
+```
 
-  4. Click on File -> Save or press Crt+S.
-
-  5. Open up your `app.js` and uncomment the line 31. That will add the support for translation with the newly created `routes/lt.js`.
-
-
-  6. Click on File -> Save or press Crt+S.
-
-## Deploy
-
-  1. The last step in order to complete our application is to deploy our changes to Bluemix. To do this, we need to push our new code to the application. In the code editor screen, switch to the Git view, the 2nd icon in the left navigation bar.
-
-  ![git](instructions/git.png)
-
-  2. Locate your change to app.js file. Check it (select it), add a commit message, and click **Commit**.
-
-  ![commit](instructions/commit.png)
-
-  3. Click **Sync** to send your changes from this workspace to the main repository and trigger a deploy of your app.
-
-  ![sync](instructions/sync.png)
-
-  4. Finally, Click on **Build and Deploy** to see the deploy process.
-
-  ![deploy-button](instructions/build-and-deploy.png)
-
-**Note:** While this may show as overly complicated, we show it here to illustrate you can have exactly the same source management practices you could have your local environment connected to a Git repository, in the Bluemix DevOps environment.
+7. Save
+8. Restart the app
 
 # Congratulations
 You have completed the Image Analysis Lab! :bowtie:
