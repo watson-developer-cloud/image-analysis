@@ -18,19 +18,19 @@ So let’s get started. The first thing to do is to build out the shell of our a
 1. Install [Node.js](http://nodejs.org/)
 2. Install the Bluemix CLI and the CF CLI -> Links
 3. Run the following commands to connect to your Bluemix account:
-  - `bluemix api https://api.ng.bluemix.net/`
-  - `bluemix login`
+    `bluemix api https://api.ng.bluemix.net/`
+    `bluemix login`
 4. List all the Bluemix services
-  - `cf marketplace`
+    `cf marketplace`
 5. From that list, create a Visual Recognition and a Text-to-Speech service:
-  - `cf cs watson_vision_combined free visual_recognition_name`
-  - `cf cs text_to_speech standard text_to_speech_name`
+    `cf cs watson_vision_combined free visual_recognition_name`
+    `cf cs text_to_speech standard text_to_speech_name`
 6. Go to your Bluemix Dashboard, click on the two services and write down the credentials (available on the left-hand side: Service Credentials)
 7. edit config.js to add the credentials previously retrieved
 8. Go to the project folder in a terminal and run:
     `npm install`
 5. Start the application
-6.  `node app.js`
+    `node app.js`
 7. Go to `http://localhost:3000`
 
 ## Add additional functionality to the application: Ability to read signs
@@ -124,11 +124,6 @@ Luckily, we’ve already started the process to do this. To fully implement the 
   ![deploy-button](instructions/build-and-deploy.png)
 
 **Note:** While this may show as overly complicated, we show it here to illustrate you can have exactly the same source management practices you could have your local environment connected to a Git repository, in the Bluemix DevOps environment.
-
-## Test
-
-To test out our application, navigate back to your application homepage on Bluemix. Select the URL next to "Route" in the same way that we launched our previously unfinished application before.
-The new application will perform the same functions are our previous version, but this time you will see translation for the images as well.
 
 # Congratulations
 You have completed the Image Analysis Lab! :bowtie:
