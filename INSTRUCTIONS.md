@@ -18,13 +18,13 @@ So let’s get started. The first thing to do is to build out the shell of our a
 1. Install [Node.js](http://nodejs.org/)
 2. Install the Bluemix CLI and the CF CLI -> Links
 3. Run the following commands to connect to your Bluemix account:
-  - bluemix api https://api.ng.bluemix.net/
-  - bluemix login
+  - `bluemix api https://api.ng.bluemix.net/`
+  - `bluemix login`
 4. List all the Bluemix services
-  - cf marketplace
+  - `cf marketplace`
 5. From that list, create a Visual Recognition and a Text-to-Speech service:
-  - cf cs watson_vision_combined free visual_recognition_name
-  - cf cs text_to_speech standard text_to_speech_name
+  - `cf cs watson_vision_combined free visual_recognition_name`
+  - `cf cs text_to_speech standard text_to_speech_name`
 6. Go to your Bluemix Dashboard, click on the two services and write down the credentials (available on the left-hand side: Service Credentials)
 7. edit config.js to add the credentials previously retrieved
 8. Go to the project folder in a terminal and run:
