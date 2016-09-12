@@ -50,7 +50,7 @@ module.exports.recognize = function(req, res, next) {
   });
 };
 
-module.exports.recognizeText = function(req, res, next) {
+/* module.exports.recognizeText = function(req, res, next) {
   if (!req.file && !req.file.path) {
     return next({
       error: 'Missing required parameter: file',
@@ -69,4 +69,4 @@ module.exports.recognizeText = function(req, res, next) {
       else
         return res.json(response);
     });
-};
+}; */
