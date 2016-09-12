@@ -25,7 +25,7 @@ var express = require('express'),
 require('./config/express')(app);
 
 app.post('/recognize', app.upload.single('images_file'), vr.recognize);
-app.post('/recognizetext', app.upload.single('images_file'), vr.recognizeText);
+// app.post('/recognizetext', app.upload.single('images_file'), vr.recognizeText);
 app.get('/voices', tts.voices);
 app.post('/speak', tts.speak);
 
