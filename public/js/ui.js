@@ -126,7 +126,7 @@ $(document).ready(function() {
 
   }
 
-  function translate(textObj) {
+    function translate(textObj) {
     var image = textObj.images ? textObj.images[0] : {},
       classifiers = image.classifiers || [],
       classifier = classifiers[0],
@@ -140,7 +140,7 @@ $(document).ready(function() {
     });
   }
 
-  function translateSign(textObj) {
+ /* function translateSign(textObj) {
     var text = textObj.images[0].text.replace(/_/gi, ' ') //: 'The image could not be recognize';
     var request = $.api.translate(text, model_LT);
     $.when(request).then(function(translationObj) {
@@ -148,7 +148,7 @@ $(document).ready(function() {
     }, function() {
       onSuccess(text);
     });
-  }
+  } */
 
   function onSuccess(text, translationObj) {
     var translation = (translationObj && translationObj.translations && translationObj.translations.length > 0) ? translationObj.translations[0].translation : '';
@@ -191,10 +191,10 @@ $(document).ready(function() {
     type = 0;
     selectImage();
   })
-  $('#capture-button-recognizetext').on('click', function() {
+/*  $('#capture-button-recognizetext').on('click', function() {
     type = 1;
     selectImage();
-  })
+  }) */
   $('#picture-field').on('change', imageSelected);
   $('#play-sound').on('click', speak);
 
