@@ -6,7 +6,7 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
 ## Creating a [IBM Bluemix][bluemix] Account
 
-  1. Go to [https://ace.ng.bluemix.net/](https://ace.ng.bluemix.net/)
+  1. Go to [https://console.ng.bluemix.net/](https://console.ng.bluemix.net/)
   2. Create a Bluemix account if required.
   3. Log in with your IBM ID (the ID used to create your Bluemix account)
 
@@ -34,7 +34,7 @@ Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the cod
 
   5. Test Out the new app. Now that we have deployed our application to Bluemix, the next step is to test the application in it's current state.
 
-  6. Click on the application icon to go into the dashboard for our Image Analysis app. Under the title of the application, you will see a link like "Routes: \<your-app-name\>.mybluemix.net". Click on the URL listed to navigate to your application.
+  6. Click on the application icon to go into the dashboard for our Image Analysis app. On the `Overview` tab you will see the details for your application. To the right of the application title, you will see a `View app` button. Click on the button and you will be taken to your running application.
 
   ![app-route](instructions/app-route.png)
 
@@ -54,20 +54,20 @@ Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the cod
 
   ![dashboard-app](instructions/dashboard-app.png)
 
-  2. Within the application homepage, we are able to see what services we have already included. You will notice that we already have Text to Speech and Visual Recognition built into the application. We are now going to add a third service into the application.
-To do this, click the "Add a Service or API" button on the homepage
+  2. Within the application homepage, we are able to see what services we have already included. To do this, select the `Connections` item from left navigation. You will notice that we already have Text to Speech and Visual Recognition built into the application. We are now going to add a third service into the application.
+To do this, click the `Connect new` button on the Connections tab
 
   ![app-details](instructions/app-details.png)
 
-  3. From the list of Watson services, select the Language Translation service and add it to your application. For the purposes of this lab, all of the default settings of the service will work, so when presented with the Language Translation details page, select the green "Create" button to proceed.
+  3. From the list of Watson services, select the `Language Translator` service and add it to your application. For the purposes of this lab, all of the default settings of the service will work, so when presented with the Language Translator details page, select the green `Create` button to proceed.
 
   ![add-service](instructions/add-service.png)
 
-  **Note:** you may be prompted to restage your application at this point. This is required in order to rebuild the application with the new Language Translation service that we have added. Select "Restage" to proceed.
+  **Note:** you may be prompted to restage your application at this point. This is required in order to rebuild the application with the new Language Translator service that we have added. Select "Restage" to proceed.
 
 We are going to demonstrate how easy it is to use the Watson services on Bluemix to add functionality to existing applications. Our current application can identify images and read out that identification using audio. However let’s say that we wanted to be able to identify these images for a wider user base, which requires translation into other languages.
 
-Luckily, we’ve already started the process to do this. To fully implement the ability to translate these descriptions in our application, we are going to edit our application code to add the Language Translation service that we added earlier.
+Luckily, we’ve already started the process to do this. To fully implement the ability to translate these descriptions in our application, we are going to edit our application code to add the Language Translator service that we added earlier.
 
 ## Modify the existing application
 
@@ -80,37 +80,37 @@ Luckily, we’ve already started the process to do this. To fully implement the 
 
   3. Open up `lt.js` and copy the code below:  
 
-  ```js
-  'use strict';
+```js
+'use strict';
 
-  var watson = require('watson-developer-cloud');
+var watson = require('watson-developer-cloud');
 
-  var languageTranslation = watson.language_translation({
-    version: 'v2',
-    username: '<<service_username>>',
-    password: '<<service_password>>'
-  });
+var languageTranslator = watson.language_translator({
+  url: 'https://gateway.watsonplatform.net/language-translator/api',
+  version: 'v2',
+  username: '<<service_username>>',
+  password: '<<service_password>>'
+});
 
-  module.exports.translate = function(req, res, next) {
-    var params = {
-      text: req.body.text,
-      model_id: 'en-es',
-    };
-    languageTranslation.translate(params, function(error, result) {
-      if (error)
-        return next(error);
-      else
-        return res.json(result);
-    });
+module.exports.translate = function(req, res, next) {
+  var params = {
+    text: req.body.text,
+    model_id: 'en-es',
   };
-  ```
-  Note: Make sure to replace service_username & service_password with the username & password of the Language Translation service added.
-  The code above will connect the app to the [Language Translation][lt_service] service.
+  languageTranslator.translate(params, function(error, result) {
+    if (error)
+      return next(error);
+    else
+      return res.json(result);
+  });
+};
+```
+  Note: Make sure to replace service_username & service_password with the username & password of the Language Translator service added.
+  The code above will connect the app to the [Language Translator][lt_service] service.
 
   4. Click on File -> Save or press Crt+S.
 
   5. Open up your `app.js` and uncomment the line 31. That will add the support for translation with the newly created `routes/lt.js`.
-
 
   6. Click on File -> Save or press Crt+S.
 
@@ -136,12 +136,125 @@ Luckily, we’ve already started the process to do this. To fully implement the 
 
 ## Test
 
-To test out our application, navigate back to your application homepage on Bluemix. Select the URL next to "Route" in the same way that we launched our previously unfinished application before.
-The new application will perform the same functions are our previous version, but this time you will see translation for the images as well.
+To test out our application, navigate back to your application in Bluemix and click the `View app` button in the same way that we launched our previously unfinished application before.
+The new application will perform the same functions are our previous version, but this time in addition to the english text you saw before, you will see translation for the images as well.
+
+![app-screenshot-translated](instructions/app-screenshot-translated.png)
+
+## Extra Credit - Training
+
+While the default Visual Recognition does a good job classifying many common objects, it is possible to extend its accuracy by training custom classifiers. A new custom classifier can be trained by invoking an API, passing several compressed (.zip) files, including files containing positive or negative images (.jpg, or .png). Compressed files containing positive examples are used to create “classes” that define what the new classifier is. The compressed file containing negative examples is not used to create a class within the created classifier, but does define what the new classifier is not. Negative example files should contain images that do not depict the subject of any of the positive examples.
+
+1. Download the sample training images to your local machine by clicking the links below:
+
+  [Fruit Bowls - Positive](https://watson-labs.mybluemix.net/data/fruitbowl.zip)
+  <br/>
+  [Not Fruit Bowls - Negative](https://watson-labs.mybluemix.net/data/not-fruit-bowls.zip)
+
+2. Using the zips downloaded above execute the classify call to create a new instnce of a classifier.
+
+``` sh
+curl -X POST -F "fruitbowl_positive_examples=@fruitbowl.zip" -F "negative_examples=@not-fruit-bowls.zip" -F "name=fruitbowls" "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classifiers?api_key={api_key}&version=2016-05-20"
+```
+
+The response to creating a classifier will contain the `classifier_id` of your newly created instance, along with its current `status`.
+
+``` json
+{
+    "classifier_id": "fruitbowls_206030696",
+    "name": "fruitbowls",
+    "owner": "0e03a4bf-6b50-461d-a21d-ccdc32fe0906",
+    "status": "training",
+    "created": "2016-11-08T22:23:39.034Z",
+    "classes": [{"class": "fruitbowl"}]
+}
+```
+
+You can check the `status` of your classifier by listing all your classifiers as follows:
+
+``` sh
+curl -X GET "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classifiers?api_key={api_key}&version=2016-05-20"
+```
+
+``` json
+{
+    "classifiers": [{
+        "classifier_id": "fruitbowls_206030696",
+        "name": "fruitbowls",
+        "status": "ready"
+    }]
+}
+```
+
+Once your classifier is `ready` you can start classifying images using it.
+
+### Classify an image against the new classifier
+
+We are now ready to re-classify our image using our new custom classifer.  Like before we will invoke the `classify` endpoint.  Unlike before, this time we will pass the set of `classifier_ids` to use to classify.  Here we will send in the `default` classifier along with the `classifier_id` of our custom classifer.
+
+``` sh
+curl -X GET "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key={api_key}&url=https://github.com/watson-developer-cloud/doc-tutorial-downloads/raw/master/visual-recognition/fruitbowl.jpg&version=2016-05-19&classifier_ids={classifier_id},default"
+```
+
+Our response will look similar to before, but will now include the classifer results from our custom classifier.
+
+``` json
+{
+    "custom_classes": 1,
+    "images": [
+        {
+            "classifiers": [
+                {
+                    "classes": [
+                        {
+                            "class": "fruit",
+                            "score": 0.937027,
+                            "type_hierarchy": "/foods/fruit"
+                        },
+                        {
+                            "class": "apple",
+                            "score": 0.668188
+                        },
+                        {
+                            "class": "banana",
+                            "score": 0.549834,
+                            "type_hierarchy": "/foods/fruits/banana"
+                        },
+                        {
+                            "class": "food",
+                            "score": 0.524979
+                        },
+                        {
+                            "class": "orange",
+                            "score": 0.5,
+                            "type_hierarchy": "/colors/orange"
+                        }
+                    ],
+                    "classifier_id": "default",
+                    "name": "default"
+                },
+                {
+                    "classes": [
+                        {
+                            "class": "fruitbowl",
+                            "score": 0.55598
+                        }
+                    ],
+                    "classifier_id": "fruitbowls_206030696",
+                    "name": "fruitbowls"
+                }
+            ],
+            "resolved_url": "https://raw.githubusercontent.com/watson-developer-cloud/doc-tutorial-downloads/master/visual-recognition/fruitbowl.jpg",
+            "source_url": "https://github.com/watson-developer-cloud/doc-tutorial-downloads/raw/master/visual-recognition/fruitbowl.jpg"
+        }
+    ],
+    "images_processed": 1
+}
+```
 
 # Congratulations
 You have completed the Image Analysis Lab! :bowtie:
 
 [bluemix]: https://console.ng.bluemix.net/
-[wdc_services]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html
-[lt_service]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/language-translation.html
+[wdc_services]: http://www.ibm.com/watson/developercloud/services-catalog.html
+[lt_service]: http://www.ibm.com/watson/developercloud/language-translator.html

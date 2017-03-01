@@ -40,7 +40,7 @@ Demo: [http://image-analysis.mybluemix.net/](http://image-analysis.mybluemix.net
 ## Open Source @ IBM
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
-[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/concept-insights.html
+[service_url]: http://www.ibm.com/watson/developercloud/concept-insights.html
 [cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
+[getting_started]: http://www.ibm.com/watson/developercloud/doc/getting_started/
 [sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
