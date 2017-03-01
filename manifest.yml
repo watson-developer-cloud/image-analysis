@@ -1,15 +1,16 @@
 ---
 declared-services:
-  text-to-speech-service:
+  my-text-to-speech:
     label: text_to_speech
     plan: standard
-  visual-recognition-service:
+  my-visual-recognition:
     label: watson_vision_combined
     plan: free
+
 applications:
 - services:
-  - text-to-speech-service
-  - visual-recognition-service
+  - my-text-to-speech
+  - my-visual-recognition
   name: image-analysis
   command: node app.js
   path: .

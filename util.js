@@ -16,11 +16,11 @@
 
 'use strict';
 
-var path = require('path'),
-  fs = require('fs'),
-  mkdirp = require('mkdirp'),
-  uuid = require('node-uuid'),
-  sox = require('sox');
+var path = require('path');
+var fs = require('fs');
+var mkdirp = require('mkdirp');
+var uuid = require('node-uuid');
+var sox = require('sox');
 
 var dest = path.resolve('./transcode');
 mkdirp(dest, function(err) {

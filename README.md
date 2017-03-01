@@ -15,7 +15,7 @@ Demo: [http://image-analysis.mybluemix.net/](http://image-analysis.mybluemix.net
 ## Running locally
   The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
 
-1. Copy the credentials from your `visual-recognition` and `text-to-speech` service in Bluemix to `vr.js` and `tts.js`, you can see the credentials by going to bluemix.net.
+1. Copy the credentials from your [Visual Recognition][vr] and [Text to Speech][tts] service in Bluemix to `visual-recognition.js` and `text-to-speech.js`, you can see the credentials by going to bluemix.net.
 
 2. Install [Node.js](http://nodejs.org/)
 3. Go to the project folder in a terminal and run:
@@ -24,10 +24,6 @@ Demo: [http://image-analysis.mybluemix.net/](http://image-analysis.mybluemix.net
 5.  `node app.js`
 6. Go to `http://localhost:3000`
 
-
-## Troubleshooting
-
-  Explain how to see the deploy logs in jazzhub
 
 ## License
 
@@ -40,7 +36,8 @@ Demo: [http://image-analysis.mybluemix.net/](http://image-analysis.mybluemix.net
 ## Open Source @ IBM
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
-[service_url]: http://www.ibm.com/watson/developercloud/concept-insights.html
+[tts]: http://www.ibm.com/watson/developercloud/text-to-speech.html
+[vr]: http://www.ibm.com/watson/developercloud/visual-recognition.html
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [getting_started]: http://www.ibm.com/watson/developercloud/doc/getting_started/
-[sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
+[sign_up]: https://console.ng.bluemix.net/registration

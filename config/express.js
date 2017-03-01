@@ -17,10 +17,10 @@
 'use strict';
 
 // Module dependencies
-var express = require('express'),
-  bodyParser = require('body-parser'),
-  findRemoveSync = require('find-remove'),
-  multer = require('multer');
+var express = require('express');
+var bodyParser = require('body-parser');
+var findRemoveSync = require('find-remove');
+var multer = require('multer');
 
 module.exports = function(app) {
 

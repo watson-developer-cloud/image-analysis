@@ -2,5 +2,4 @@ node_modules
 uploads/*
 !uploads/README.md
 transcode
-run.sh
-VCAP_SERVICES.json
+.env

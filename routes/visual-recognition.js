@@ -17,33 +17,33 @@
 'use strict';
 
 var fs = require('fs'),
-	watson = require('watson-developer-cloud');
+  watson = require('watson-developer-cloud');
 
 var visualRecognition = watson.visual_recognition({
-	version: 'v3',
-	version_date: '2016-05-19',
-	api_key: process.env.API_KEY || '<api_key>'
+  version: 'v3',
+  version_date: '2016-05-19',
+  api_key: process.env.VISUAL_RECOGNITION_API_KEY || '<api_key>'
 });
 
 module.exports.recognize = function(req, res, next) {
-	if (!req.file  && !req.file.path) {
+  if (!req.file  && !req.file.path) {
     return next({ error: 'Missing required parameter: file', code: 400 });
   }
 
-	var params = {
-		images_file: fs.createReadStream(req.file.path)
-	};
+  var params = {
+    images_file: fs.createReadStream(req.file.path)
+  };
 
-	visualRecognition.classify(params, function(error, result) {
+  visualRecognition.classify(params, function(error, result) {
 		// delete the recognized file
     if (req.file)
       fs.unlink(req.file.path);
 
-		if (error) {
-			return next(error);
-		}
-		else {
-			return res.json(result);
-		}
-	});
+    if (error) {
+      return next(error);
+    }
+    else {
+      return res.json(result);
+    }
+  });
 };

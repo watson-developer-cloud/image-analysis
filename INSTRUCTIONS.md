@@ -14,7 +14,7 @@ So let’s get started. The first thing to do is to build out the shell of our a
 
 ## Deploy this sample application in Bluemix and Test it
 
-Leveraging the IBM Bluemix Devops Services, we are able to quickly clone the code from any public GitHub repository, create the dependent Watson service instances, and deploy our application code with the click of a button.  To get started:
+Leveraging the IBM Bluemix DevOps Services, we are able to quickly clone the code from any public GitHub repository, create the dependent Watson service instances, and deploy our application code with the click of a button.  To get started:
 
   1. Click the button below to fork the project into IBM DevOps Services and deploy your own instance of this application on [IBM Bluemix][bluemix].
 
@@ -76,9 +76,9 @@ Luckily, we’ve already started the process to do this. To fully implement the 
 
   2. Clicking on Edit Code will take you to the Jazz Hub repository, which will allow us to edit and push new versions of our code to the application.
 
-  Within the Github repository, navigate to routes folder and select **File -> New -> File** and name the new file `lt.js`
+  Within the Github repository, navigate to routes folder and select **File -> New -> File** and name the new file `language-translator.js`
 
-  3. Open up `lt.js` and copy the code below:  
+  3. Open up `language-translator.js` and copy the code below:  
 
 ```js
 'use strict';
@@ -88,8 +88,8 @@ var watson = require('watson-developer-cloud');
 var languageTranslator = watson.language_translator({
   url: 'https://gateway.watsonplatform.net/language-translator/api',
   version: 'v2',
-  username: '<<service_username>>',
-  password: '<<service_password>>'
+  username: '<service_username>',
+  password: '<service_password>'
 });
 
 module.exports.translate = function(req, res, next) {
@@ -110,7 +110,7 @@ module.exports.translate = function(req, res, next) {
 
   4. Click on File -> Save or press Crt+S.
 
-  5. Open up your `app.js` and uncomment the line 31. That will add the support for translation with the newly created `routes/lt.js`.
+  5. Open up your `app.js` and uncomment the line 31. That will add the support for translation with the newly created `routes/language-translator.js`.
 
   6. Click on File -> Save or press Crt+S.
 

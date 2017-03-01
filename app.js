@@ -16,24 +16,26 @@
 
 'use strict';
 
-var express = require('express'),
-  app = express(),
-  vr = require('./routes/vr'),
-  tts = require('./routes/tts');
+require('dotenv').config({ silent: true });
+
+var express = require('express');
+var app = express();
+var visualRecognition = require('./routes/visual-recognition');
+var textToSpeech = require('./routes/text-to-speech');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-app.post('/recognize',app.upload.single('images_file'), vr.recognize);
-app.get('/voices', tts.voices);
-app.post('/speak', tts.speak);
+app.post('/recognize', app.upload.single('images_file'), visualRecognition.recognize);
+app.get('/voices', textToSpeech.voices);
+app.post('/speak', textToSpeech.speak);
 
 //app.post('/translate', require('./routes/lt').translate);
 
 // error-handler settings
 require('./config/error-handler')(app);
 
-var port = process.env.VCAP_APP_PORT || 3000;
+var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 app.listen(port, function() {
   console.log('listening at:', port);
 });

@@ -20,9 +20,9 @@ var watson = require('watson-developer-cloud'),
   util = require('../util');
 
 var textToSpeech = watson.text_to_speech({
-	version: 'v1',
-	username: process.env.USERNAME || '<user-name>',
-	password: process.env.PASSWORD || '<password>'
+  version: 'v1',
+  username: process.env.TEXT_TO_SPEECH_USERNAME || '<username>',
+  password: process.env.TEXT_TO_SPEECH_PASSWORD || '<password>'
 });
 
 module.exports.voices = function(req, res, next) {
@@ -42,7 +42,7 @@ module.exports.speak = function(req, res, next) {
   };
   var stream = textToSpeech.synthesize(params);
 
-	stream.on('error',next);
+  stream.on('error',next);
 
   var userAgent = req.headers['user-agent'];
   if (!/iPhone|iPad|iPod|Safari/i.test(userAgent)) {

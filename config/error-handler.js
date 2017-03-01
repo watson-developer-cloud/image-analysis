@@ -27,6 +27,7 @@ module.exports = function (app) {
   });
 
   // error handler
+  // eslint-disable-next-line
   app.use(function(err, req, res, next) {
     var error = {
       code: err.code || 500,
