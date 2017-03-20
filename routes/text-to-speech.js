@@ -21,8 +21,9 @@ var watson = require('watson-developer-cloud'),
 
 var textToSpeech = watson.text_to_speech({
   version: 'v1',
-  username: process.env.TEXT_TO_SPEECH_USERNAME || '<username>',
-  password: process.env.TEXT_TO_SPEECH_PASSWORD || '<password>'
+// uncomment the lines below to specify username and password
+//   username: process.env.TEXT_TO_SPEECH_USERNAME || '<username>',
+//   password: process.env.TEXT_TO_SPEECH_PASSWORD || '<password>'
 });
 
 module.exports.voices = function(req, res, next) {
