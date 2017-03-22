@@ -30,7 +30,7 @@ app.post('/recognize', app.upload.single('images_file'), visualRecognition.recog
 app.get('/voices', textToSpeech.voices);
 app.post('/speak', textToSpeech.speak);
 
-//app.post('/translate', require('./routes/lt').translate);
+//app.post('/translate', require('./routes/language-translator').translate);
 
 // error-handler settings
 require('./config/error-handler')(app);
